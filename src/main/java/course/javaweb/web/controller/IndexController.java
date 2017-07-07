@@ -9,5 +9,5 @@ public class IndexController {
     @RequestMapping(path = {"/", "/index"})
     public String index() {
         return "index";
-    }
+    }//Test commit
 }
