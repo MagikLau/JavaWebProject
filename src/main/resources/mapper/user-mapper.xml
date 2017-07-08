@@ -3,7 +3,7 @@
 <mapper namespace="course.javaweb.dao.UserDao">
     <select id="getUserInfo" resultType="course.javaweb.model.User">
         SELECT *
-        FROM user
+        FROM person
         WHERE userName = #{userName}
     </select>
 </mapper>
