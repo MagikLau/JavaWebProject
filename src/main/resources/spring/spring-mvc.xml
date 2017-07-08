@@ -16,52 +16,52 @@
     </bean>
 
     <!--配置ContentNegotiatingViewResolver-->
-    <!--<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">-->
-    <!--<property name="viewResolvers">-->
-    <!--<list>-->
-    <!--<bean id="freeMarkerViewResolver"-->
-    <!--class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">-->
-    <!--<property name="prefix" value=""/>-->
-    <!--<property name="suffix" value=".ftl"/>-->
-    <!--<property name="cache" value="true"/>-->
-    <!--<property name="contentType" value="text/html;charset=utf-8"/>-->
-    <!--<property name="order" value="0"/>-->
-    <!--</bean>-->
-
-    <!--&lt;!&ndash;<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">&ndash;&gt;-->
-    <!--&lt;!&ndash;<property name="suffix" value=".html"/>&ndash;&gt;-->
-    <!--&lt;!&ndash;<property name="prefix" value="static/html/"/>&ndash;&gt;-->
-    <!--&lt;!&ndash;<property name="contentType" value="text/html;charset=utf-8"/>&ndash;&gt;-->
-    <!--&lt;!&ndash;<property name="order" value="1"/>&ndash;&gt;-->
-    <!--&lt;!&ndash;</bean>&ndash;&gt;-->
-
-    <!--</list>-->
-    <!--</property>-->
-
-    <!--<property name="defaultViews">-->
-    <!--<list>-->
-    <!--<bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>-->
-    <!--</list>-->
-    <!--</property>-->
-    <!--</bean>-->
-    <bean
-            class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
         <property name="viewResolvers">
             <list>
-                <bean id="viewResolver"
+                <bean id="freeMarkerViewResolver"
                       class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
-                    <property name="cache" value="true"/>
                     <property name="prefix" value=""/>
                     <property name="suffix" value=".ftl"/>
-                    <property name="contentType" value="text/html; charset=utf-8"/>
+                    <property name="cache" value="true"/>
+                    <property name="contentType" value="text/html;charset=utf-8"/>
+                    <property name="order" value="0"/>
                 </bean>
+
+                <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+                <!--<property name="suffix" value=".html"/>-->
+                <!--<property name="prefix" value="static/html/"/>-->
+                <!--<property name="contentType" value="text/html;charset=utf-8"/>-->
+                <!--<property name="order" value="1"/>-->
+                <!--</bean>-->
+
             </list>
         </property>
+
         <property name="defaultViews">
             <list>
                 <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
             </list>
         </property>
     </bean>
+    <!--<bean-->
+    <!--class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">-->
+    <!--<property name="viewResolvers">-->
+    <!--<list>-->
+    <!--<bean id="viewResolver"-->
+    <!--class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">-->
+    <!--<property name="cache" value="true"/>-->
+    <!--<property name="prefix" value=""/>-->
+    <!--<property name="suffix" value=".ftl"/>-->
+    <!--<property name="contentType" value="text/html; charset=utf-8"/>-->
+    <!--</bean>-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--<property name="defaultViews">-->
+    <!--<list>-->
+    <!--<bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--</bean>-->
 
 </beans>

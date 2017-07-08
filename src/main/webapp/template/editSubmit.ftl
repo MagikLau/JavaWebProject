@@ -18,6 +18,6 @@
     </div>
     </#if>
 </div>
-<#include "include/footer.ftl">
+<#include "./include/footer.ftl">
 </body>
 </html>
