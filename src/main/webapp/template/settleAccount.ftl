@@ -14,7 +14,7 @@
  	<button class="u-btn u-btn-primary" id="Account">购买</button></div>
 </div>
 <#include "./include/footer.ftl">
-<script type="text/javascript" src="../js/global.js"></script>
-<script type="text/javascript" src="../js/settleAccount.js"></script>
+<script type="text/javascript" src="../static/js/global.js"></script>
+<script type="text/javascript" src="../static/js/settleAccount.js"></script>
 </body>
 </html>
