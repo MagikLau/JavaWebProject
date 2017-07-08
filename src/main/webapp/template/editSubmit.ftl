@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-<#include "include/head.ftl">
+<#include "./include/head.ftl">
 <body>
-<#include "include/support.ftl">
-<#include "include/header.ftl">
+<#include "./include/support.ftl">
+<#include "./include/header.ftl">
 <#assign productId = RequestParameters['id']>
 <div class="g-doc">
     <#if product>
@@ -18,6 +18,6 @@
     </div>
     </#if>
 </div>
-<#include "include/footer.ftl">
+<#include "./include/footer.ftl">
 </body>
 </html>
