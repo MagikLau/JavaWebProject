@@ -1,71 +1,138 @@
 package course.javaweb.model;
 
+import java.sql.Blob;
+
 public class Content {
 
-    private long id;
-    private long price;
-    private String title;
-    private String icon;
-    private String summary;
-    private String text;
+    /** 主键 */
+    private Integer id;
 
-    public long getId() {
-        return id;
+    /** 当前价格 */
+    private Long price;
+
+    /** 标题 */
+    private String title;
+
+    /** 图片 */
+    private Blob icon;
+
+    /** 摘要 */
+    private String abstractInfo;
+
+    /** 正文 */
+    private Blob text;
+
+    /**
+     * 获取主键
+     * 
+     * @return 主键
+     */
+    public Integer getId() {
+        return this.id;
     }
 
-    public void setId(long id) {
+    /**
+     * 设置主键
+     * 
+     * @param id
+     *          主键
+     */
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public long getPrice() {
-        return price;
+    /**
+     * 获取当前价格
+     * 
+     * @return 当前价格
+     */
+    public Long getPrice() {
+        return this.price;
     }
 
-    public void setPrice(long price) {
+    /**
+     * 设置当前价格
+     * 
+     * @param price
+     *          当前价格
+     */
+    public void setPrice(Long price) {
         this.price = price;
     }
 
+    /**
+     * 获取标题
+     * 
+     * @return 标题
+     */
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
+    /**
+     * 设置标题
+     * 
+     * @param title
+     *          标题
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public String getIcon() {
-        return icon;
+    /**
+     * 获取图片
+     * 
+     * @return 图片
+     */
+    public Blob getIcon() {
+        return this.icon;
     }
 
-    public void setIcon(String icon) {
+    /**
+     * 设置图片
+     * 
+     * @param icon
+     *          图片
+     */
+    public void setIcon(Blob icon) {
         this.icon = icon;
     }
 
-    public String getSummary() {
-        return summary;
+    /**
+     * 获取摘要
+     * 
+     * @return 摘要
+     */
+    public String getAbstractInfo() {
+        return this.abstractInfo;
     }
 
-    public void setSummary(String summary) {
-        this.summary = summary;
+    /**
+     * 设置摘要
+     * 
+     * @param abstractInfo
+     *          摘要
+     */
+    public void setAbstractInfo(String abstractInfo) {
+        this.abstractInfo = abstractInfo;
     }
 
-    public String getText() {
-        return text;
+    /**
+     * 获取正文
+     * 
+     * @return 正文
+     */
+    public Blob getText() {
+        return this.text;
     }
 
-    public void setText(String text) {
+    /**
+     * 设置正文
+     * 
+     * @param text
+     *          正文
+     */
+    public void setText(Blob text) {
         this.text = text;
-    }
-
-    @Override
-    public String toString() {
-        return "Content{" +
-                "id=" + id +
-                ", price=" + price +
-                ", title='" + title + '\'' +
-                ", icon='" + icon + '\'' +
-                ", summary='" + summary + '\'' +
-                ", text='" + text + '\'' +
-                '}';
     }
 }

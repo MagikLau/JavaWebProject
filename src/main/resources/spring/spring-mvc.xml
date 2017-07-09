@@ -25,7 +25,7 @@
                     <property name="suffix" value=".ftl"/>
                     <property name="cache" value="true"/>
                     <property name="contentType" value="text/html;charset=utf-8"/>
-                    <property name="order" value="0"/>
+                    <property name="order" value="0"/><!--优先级-->
                 </bean>
 
                 <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
@@ -44,24 +44,5 @@
             </list>
         </property>
     </bean>
-    <!--<bean-->
-    <!--class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">-->
-    <!--<property name="viewResolvers">-->
-    <!--<list>-->
-    <!--<bean id="viewResolver"-->
-    <!--class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">-->
-    <!--<property name="cache" value="true"/>-->
-    <!--<property name="prefix" value=""/>-->
-    <!--<property name="suffix" value=".ftl"/>-->
-    <!--<property name="contentType" value="text/html; charset=utf-8"/>-->
-    <!--</bean>-->
-    <!--</list>-->
-    <!--</property>-->
-    <!--<property name="defaultViews">-->
-    <!--<list>-->
-    <!--<bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>-->
-    <!--</list>-->
-    <!--</property>-->
-    <!--</bean>-->
 
 </beans>

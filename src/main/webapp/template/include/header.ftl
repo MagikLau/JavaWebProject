@@ -8,7 +8,7 @@
             username ${(user.userName)!}<br>
         </#if>
         <div class="user">
-        <#if user??>
+        <#if user.id??>
             <#if user.usertype??>
                 <#if user.usertype==1>卖家
                 <#else>买家
