@@ -8,24 +8,27 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginAndLogoutController {
-    private LoginService loginService;
-
-    @Autowired
-    private void setLoginService(LoginService loginService) {
-        this.loginService = loginService;
-    }
 
     @RequestMapping(value = "/login")
     public String login(@ModelAttribute("user") User user, HttpSession httpSession) {
-        if (loginService.login(user)) {
+        System.out.println("user in LoginController: "+user);
+        System.out.println("user in sessionAttribute: "+httpSession.getAttribute("user"));
+
+        if (user!=null) {
+            System.out.println("Not login yet. User: "+user);
+            System.out.println("Before setting sessionAttribute. Attribute'User': "+httpSession.getAttribute("user"));
             httpSession.setAttribute("user", user);
-            return "index";
-        } else
-            return "login";
+            System.out.println("After setting sessionAttribute. Attribute'User': "+httpSession.getAttribute("user"));
+        } else{
+            System.out.println("Unknow error.");
+        }
+        return "login";
+
     }
 
     @RequestMapping("/logout")
