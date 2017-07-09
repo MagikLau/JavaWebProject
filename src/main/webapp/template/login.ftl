@@ -6,7 +6,7 @@
 <#include "./include/header.ftl">
 
 
-<form class="m-form m-form-ht n-login" id="loginForm" onsubmit="return false;" autocomplete="off">
+<form class="m-form m-form-ht n-login" id="loginForm" onsubmit="return true;" autocomplete="off">
     <div class="fmitem">
         <label class="fmlab">用户名：</label>
         <div class="fmipt">
@@ -26,8 +26,8 @@
     </div>
 </form>
 <#include "./include/footer.ftl">
-<script type="text/javascript" src="static/js/md5.js"></script>
-<script type="text/javascript" src="static/js/global.js"></script>
-<script type="text/javascript" src="static/js/pageLogin.js"></script>
+<script type="text/javascript" src="/static/js/md5.js"></script>
+<script type="text/javascript" src="/static/js/global.js"></script>
+<script type="text/javascript" src="/static/js/pageLogin.js"></script>
 </body>
 </html>

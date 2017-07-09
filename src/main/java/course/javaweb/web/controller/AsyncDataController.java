@@ -29,6 +29,7 @@ public class AsyncDataController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public AsyncData login(User user) {
+
         if (loginService.login(user)) {
             asyncData.setCode(200);
             asyncData.setMessage("success");

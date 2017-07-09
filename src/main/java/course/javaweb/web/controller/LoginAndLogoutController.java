@@ -9,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -21,9 +22,11 @@ public class LoginAndLogoutController {
     }
 
     @RequestMapping(value = "/login")
-    public String login(@ModelAttribute("user") User user, HttpSession httpSession) {
-        if (loginService.login(user)) {
-            httpSession.setAttribute("user", user);
+    public String login(@ModelAttribute("user") User user,HttpSession httpSession) {
+         if (loginService.login(user)) {
+            httpSession.setAttribute("user",user);
+             System.out.println("first :"+user.getUserName());
+             System.out.println("first :"+user.getPassword());
             return "index";
         } else
             return "login";

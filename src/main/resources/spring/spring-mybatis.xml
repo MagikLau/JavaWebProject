@@ -28,9 +28,19 @@
     <!--配置MapperScannerConfigurer-->
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="course.javaweb.dao"/>
+            <property name="basePackage" value="course.javaweb.dao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
+    <!--<bean id="userdao" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
+        <!--<property name="mapperInterface" value="Dao.UserDao"></property>-->
+        <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>-->
+    <!--</bean>-->
+
+
+    <!--<bean id="userservice" class="course.javaweb.service.impl.LoginServiceImpl">-->
+        <!--<property name="userDao" ref="userdao"></property>-->
+    <!--</bean>-->
+
 
 
 </beans>

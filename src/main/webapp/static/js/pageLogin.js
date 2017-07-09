@@ -17,6 +17,7 @@
 					loading.show();
 					ajax({
 						data:{userName:value1,password:value2},
+						type:'"post',
 						url:'/api/login',
 						success:function(result){
 							loading.hide();
