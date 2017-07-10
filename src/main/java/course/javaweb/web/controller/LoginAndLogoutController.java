@@ -15,25 +15,25 @@ import javax.servlet.http.HttpSession;
 public class LoginAndLogoutController {
 
     @RequestMapping(value = "/login")
-    public String login(@ModelAttribute("user") User user, HttpSession httpSession) {
-        System.out.println("user in LoginController: "+user);
+    public String login(HttpSession httpSession) {
         System.out.println("user in sessionAttribute: "+httpSession.getAttribute("user"));
 
-        if (user!=null) {
-            System.out.println("Not login yet. User: "+user);
-            System.out.println("Before setting sessionAttribute. Attribute'User': "+httpSession.getAttribute("user"));
-            httpSession.setAttribute("user", user);
-            System.out.println("After setting sessionAttribute. Attribute'User': "+httpSession.getAttribute("user"));
-        } else{
-            System.out.println("Unknow error.");
-        }
+//        if (user!=null) {
+//            System.out.println("Not login yet. User: "+user);
+//            System.out.println("Before setting sessionAttribute. Attribute'User': "+httpSession.getAttribute("user"));
+//            httpSession.setAttribute("user", user);
+//            System.out.println("After setting sessionAttribute. Attribute'User': "+httpSession.getAttribute("user"));
+//        } else{
+//            System.out.println("Unknow error.");
+//        }
         return "login";
 
     }
 
     @RequestMapping("/logout")
-    public String logout(ModelMap modelMap) {
+    public String logout(ModelMap modelMap, HttpSession httpSession) {
         modelMap.remove("user");
+        httpSession.removeAttribute("user");
         return "login";
     }
 

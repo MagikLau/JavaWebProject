@@ -35,11 +35,13 @@ public class LoginApi {
             map.addAttribute("code", 200);
             map.addAttribute("message", "success");
             map.addAttribute("result", true);
+//            map.addAttribute("user", loginUser);
             httpSession.setAttribute("user", loginUser);
-
         }else{
+//            map.remove("user");
+            httpSession.removeAttribute("user");
             map.addAttribute("code", 401);
-            map.addAttribute("message", "账号密码错误");
+            map.addAttribute("message", "failed");
             map.addAttribute("result", false);
         }
         return map;

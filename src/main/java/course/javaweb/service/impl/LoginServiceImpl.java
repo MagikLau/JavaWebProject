@@ -31,7 +31,6 @@ public class LoginServiceImpl implements LoginService {
                 System.out.println("Password checked.");
             }else{
                 System.out.println("Wrong password.");
-                userInfo = null;
             }
         }
         return user;
