@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
+
 @Service
 
 public class LoginServiceImpl implements LoginService {
@@ -20,21 +22,21 @@ public class LoginServiceImpl implements LoginService {
         this.userDao = userDao;
     }
 
-    public boolean login(User user) {
+    public User login(User user) {
 
         User userInfo = userDao.getUserInfo(user);
 
         if (userInfo != null) {
+            System.out.println("berfore user: "+user);
+            System.out.println("berfore userInfo : "+userInfo);
             if (userInfo.getPassword().equals(user.getPassword())) {
-
                 BeanUtils.copyProperties(userInfo, user);
-                return true;
-//                System.out.println("2: "+user.getNickname());
-//                System.out.println("2: "+user.getUserName());
-//                System.out.println("db: "+userInfo.getNickname());
-//                System.out.println("db: "+userInfo.getUserName());
+                System.out.println("after user: "+user);
+                System.out.println("after userInfo: "+userInfo);
+                return user;
             }
+            return null;
         }
-        return false;
+        return null ;
     }
 }

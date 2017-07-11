@@ -11,10 +11,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class IndexController {
     @RequestMapping(path = {"/", "/index"})
-    public String index(@ModelAttribute("user") User user, HttpSession httpSession) {
-
-        httpSession.setAttribute("user", user);
-
+    public String index(HttpSession httpSession) {
         return "index";
     }
 }

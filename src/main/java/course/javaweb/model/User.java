@@ -5,18 +5,18 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
 
-    private long id;
+    private Integer id;
     private String userName;
     private String password;
     private String nickname;
-    private long usertype;
+    private Integer usertype;
 
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -46,11 +46,11 @@ public class User {
     }
 
 
-    public long getUsertype() {
+    public Integer getUsertype() {
         return usertype;
     }
 
-    public void setUsertype(long usertype) {
+    public void setUsertype(Integer usertype) {
         this.usertype = usertype;
     }
 

@@ -17,24 +17,20 @@ public class LoginAndLogoutController {
     private LoginService loginService;
 
     @Autowired
-    private void setLoginService(LoginService loginService) {
+    public void setLoginService(LoginService loginService) {
         this.loginService = loginService;
     }
 
     @RequestMapping(value = "/login")
-    public String login(@ModelAttribute("user") User user,HttpSession httpSession) {
-         if (loginService.login(user)) {
-            httpSession.setAttribute("user",user);
-             System.out.println("first :"+user.getUserName());
-             System.out.println("first :"+user.getPassword());
-            return "index";
-        } else
+//    @ModelAttribute("user") User user
+    public String login() {
+
             return "login";
     }
 
     @RequestMapping("/logout")
-    public String logout(ModelMap modelMap) {
-        modelMap.remove("user");
+    public String logout(HttpSession httpSession) {
+        httpSession.removeAttribute("user");
         return "login";
     }
 

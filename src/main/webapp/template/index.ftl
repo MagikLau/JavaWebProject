@@ -10,7 +10,7 @@
         <div class="tab">
             <ul>
                 <li <#if listType != 1>class="z-sel"</#if> ><a href="/">所有内容</a></li>
-                <#if user.userName??>
+                <#if user??>
                     <#if user.usertype == 0>
                         <li <#if listType == 1>class="z-sel"</#if>   ><a href="/?type=1">未购买的内容</a></li></#if>
                 </#if>
@@ -24,7 +24,7 @@
     <#else>
     <div class="n-plist">
         <ul class="f-cb" id="plist">
-        <#if user && user.usertype == 0 && listType == 1>
+        <#if user?? && user.usertype == 0 && listType == 1>
             <#list productList as x>
                 <#if !x.isBuy>
                 <li id="p-${x.id}">
