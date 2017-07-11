@@ -17,14 +17,24 @@ public class LoginServiceImpl implements LoginService {
         this.userDao = userDao;
     }
 
-    public boolean login(User user) {
+    public User login(String username, String password) {
+        User user = new User();
+        user.setUserName(username);
+        user.setPassword(password);
+
         User userInfo = userDao.getUserInfo(user);
+        System.out.println("ServiceuserInfo:" + userInfo);
+        System.out.println("Serviceuser:" + user);
+
         if (userInfo != null) {
             if (userInfo.getPassword().equals(user.getPassword())) {
                 BeanUtils.copyProperties(userInfo, user);
-                return true;
+                System.out.println("Serviceuser2:" + user );
+            }else {
+                System.out.println("wrong");
+                userInfo = null;
             }
         }
-        return false;
+        return userInfo;
     }
 }

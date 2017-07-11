@@ -10,7 +10,7 @@
         <div class="tab">
             <ul>
                 <li <#if listType != 1>class="z-sel"</#if> ><a href="/">所有内容</a></li>
-                <#if user.usertype??>
+                <#if user??>
                     <#if user.usertype == 0>
                         <li <#if listType == 1>class="z-sel"</#if> ><a href="/?type=1">未购买的内容</a></li></#if>
                 </#if>
