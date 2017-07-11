@@ -27,23 +27,23 @@ public class LoginApi {
     @ResponseBody
     public ModelMap login(@RequestParam("userName") String userName,
                           @RequestParam("password") String password,
-                          ModelMap map, HttpSession httpSession) {
+                          ModelMap modelMap, HttpSession httpSession) {
         System.out.println("user in LoginApi: "+userName+", "+password);
         User loginUser = loginService.login(userName, password);
         System.out.println("user in LoginApi: "+loginUser);
         if( loginUser != null ){
-            map.addAttribute("code", 200);
-            map.addAttribute("message", "success");
-            map.addAttribute("result", true);
-//            map.addAttribute("user", loginUser);
+            modelMap.addAttribute("code", 200);
+            modelMap.addAttribute("message", "success");
+            modelMap.addAttribute("result", true);
+//            modelMap.addAttribute("user", loginUser);
             httpSession.setAttribute("user", loginUser);
         }else{
-//            map.remove("user");
+//            modelMap.remove("user");
             httpSession.removeAttribute("user");
-            map.addAttribute("code", 401);
-            map.addAttribute("message", "failed");
-            map.addAttribute("result", false);
+            modelMap.addAttribute("code", 401);
+            modelMap.addAttribute("message", "failed");
+            modelMap.addAttribute("result", false);
         }
-        return map;
+        return modelMap;
     }
 }

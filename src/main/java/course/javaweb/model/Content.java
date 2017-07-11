@@ -1,7 +1,5 @@
 package course.javaweb.model;
 
-import java.sql.Blob;
-
 public class Content {
 
     /** 主键 */
@@ -10,17 +8,23 @@ public class Content {
     /** 当前价格 */
     private Long price;
 
+    /** 卖家ID */
+    private Integer sellerId;
+
+    /** 贩卖数量 */
+    private Integer num;
+
     /** 标题 */
     private String title;
 
     /** 图片 */
-    private Blob icon;
+    private String image;
 
     /** 摘要 */
-    private String abstractInfo;
+    private String summary;
 
     /** 正文 */
-    private Blob text;
+    private String detail;
 
     /**
      * 获取主键
@@ -60,6 +64,22 @@ public class Content {
         this.price = price;
     }
 
+    public Integer getSellerId() {
+        return sellerId;
+    }
+
+    public void setSellerId(Integer sellerId) {
+        this.sellerId = sellerId;
+    }
+
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
+    }
+
     /**
      * 获取标题
      * 
@@ -84,18 +104,18 @@ public class Content {
      * 
      * @return 图片
      */
-    public Blob getIcon() {
-        return this.icon;
+    public String getImage() {
+        return this.image;
     }
 
     /**
      * 设置图片
      * 
-     * @param icon
+     * @param image
      *          图片
      */
-    public void setIcon(Blob icon) {
-        this.icon = icon;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     /**
@@ -103,18 +123,18 @@ public class Content {
      * 
      * @return 摘要
      */
-    public String getAbstractInfo() {
-        return this.abstractInfo;
+    public String getSummary() {
+        return this.summary;
     }
 
     /**
      * 设置摘要
      * 
-     * @param abstractInfo
+     * @param summary
      *          摘要
      */
-    public void setAbstractInfo(String abstractInfo) {
-        this.abstractInfo = abstractInfo;
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 
     /**
@@ -122,17 +142,31 @@ public class Content {
      * 
      * @return 正文
      */
-    public Blob getText() {
-        return this.text;
+    public String getDetail() {
+        return this.detail;
     }
 
     /**
      * 设置正文
      * 
-     * @param text
+     * @param detail
      *          正文
      */
-    public void setText(Blob text) {
-        this.text = text;
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
+
+    @Override
+    public String toString() {
+        return "Content{" +
+                "id=" + id +
+                ", price=" + price +
+                ", sellerId=" + sellerId +
+                ", num=" + num +
+                ", title='" + title + '\'' +
+                ", image='" + image + '\'' +
+                ", summary='" + summary + '\'' +
+                ", detail='" + detail + '\'' +
+                '}';
     }
 }

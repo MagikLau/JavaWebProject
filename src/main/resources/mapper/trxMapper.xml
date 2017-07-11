@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- trx -->
+<mapper namespace="course.javaweb.dao.TrxDao">
+    <!-- 结果映射 -->
+    <resultMap id="trxMap" type="course.javaweb.model.Trx">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="contentId" property="contentId" jdbcType="INTEGER" />
+        <result column="personId" property="personId" jdbcType="INTEGER" />
+        <result column="price" property="price" jdbcType="INTEGER" />
+        <result column="time" property="time" jdbcType="BIGINT" />
+        <result column="num" property="num" jdbcType="INTEGER" />
+    </resultMap>
+
+    <!-- 表所有字段 -->
+    <!--<sql id="allColumns">-->
+        <!--SELECT id, contentId, personId, price, trx.time, num-->
+    <!--</sql>-->
+
+    <!-- 根据用户查询所有数据 -->
+    <select id="findTrxAllByUser" parameterType="Integer" resultMap="trxMap">
+        SELECT id, contentId, personId, price, trx.time, num
+        FROM trx
+        WHERE personId = #{userid}
+    </select>
+
+    <!-- 根据产品查询所有数据 -->
+    <select id="findTrxAllByContent" parameterType="Integer" resultMap="trxMap">
+        <!--<include refid="allColumns" /> -->
+        SELECT id, contentId, personId, price, trx.time, num
+        FROM trx
+        WHERE personId = #{contentid}
+    </select>
+
+    <select id="getTrx" resultMap="trxMap">
+        <!--<include refid="allColumns" /> -->
+        SELECT id, contentId, personId, price, trx.time, num
+        FROM trx
+        WHERE personId = #{userid}
+        AND contentId = #{contentid}
+    </select>
+
+</mapper>
