@@ -17,6 +17,9 @@ public class Trx {
     /** 购买时间 */
     private Long time;
 
+    /** 购买数量 */
+    private Integer num;
+
     /**
      * 获取主键
      * 
@@ -110,5 +113,25 @@ public class Trx {
      */
     public void setTime(Long time) {
         this.time = time;
+    }
+
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
+    }
+
+    @Override
+    public String toString() {
+        return "Trx{" +
+                "id=" + id +
+                ", contentId=" + contentId +
+                ", personId=" + personId +
+                ", price=" + price +
+                ", time=" + time +
+                ", num=" + num +
+                '}';
     }
 }

@@ -1,32 +1,41 @@
 # 数据库表结构：
 # 用户表
 create table user(
-id int auto_increment primary key comment "主键", 
-userName varchar(100) comment "用户名", 
-password varchar(100) comment "密码md5加密",
-nickName varchar(50) comment "用户昵称",
-userType tinyint(3) comment "类型，买家0，卖家1") 
+  id int auto_increment primary key comment "主键",
+  userName varchar(100) comment "用户名",
+  password varchar(100) comment "密码md5加密",
+  nickName varchar(50) comment "用户昵称",
+  userType tinyint(3) comment "类型，买家0，卖家1")
 ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 # 内容表
 create table content(
-id int auto_increment primary key comment "主键",  
-price bigint  comment "当前价格",
-title varchar(100) comment "标题",
-icon blob comment "图片",
-abstractInfo varchar(200) comment "摘要",
-text blob comment "正文"  )
+  id int auto_increment primary key comment "主键",
+  price bigint  comment "当前价格",
+  num int comment "销售数量",
+  sellerId int comment "卖家ID",
+  title varchar(100) comment "标题",
+  icon VARCHAR(200) comment "图片",
+  summary varchar(200) comment "摘要",
+  detail LONGTEXT comment "正文"  )
 ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 # 交易记录表
 create table trx(
-id int auto_increment primary key comment "主键",  
-contentId int  comment "内容ID",
-personId int comment "用户ID",
-price int comment "购买价格",
-time bigint comment "购买时间")
+  id int auto_increment primary key comment "主键",
+  contentId int  comment "内容ID",
+  personId int comment "用户ID",
+  price int comment "购买价格",
+  num int comment "购买数量",
+  time bigint comment "购买时间")
 ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 # 用户数据：
 insert into `user` (`id`, `userName`, `password`, `nickName`, `userType`) values('1','buyer','37254660e226ea65ce6f1efd54233424','buyer','0');
 insert into `user` (`id`, `userName`, `password`, `nickName`, `userType`) values('2','seller','981c57a5cfb0f868e064904b8745766f','seller','1');
+
+# 商品数据：
+INSERT INTO `course`.`content` (`price`, `num`, `sellerId`, `title`, `icon`, `summary`, `detail`)
+VALUES ('10', '10', '2', 'TestTitle01', 'TestIcon.jpg', 'TestSummary01', 'TestDetail01');
+INSERT INTO `course`.`content` (`price`, `num`, `sellerId`, `title`, `icon`, `summary`, `detail`)
+VALUES ('20', '20', '2', 'TestTitle02', 'TestIcon2.jpg', 'TestSummary02', 'TestDetail02');
