@@ -30,7 +30,7 @@
         <!--<include refid="allColumns" /> -->
         SELECT id, contentId, personId, price, trx.time, num
         FROM trx
-        WHERE personId = #{contentid}
+        WHERE contentId = #{contentid}
     </select>
 
     <select id="getTrx" resultMap="trxMap">

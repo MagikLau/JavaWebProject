@@ -30,6 +30,13 @@
     <sql id="selectAll">
         SELECT id, price, title, icon, summary, detail, num, sellerId
     </sql>
+    <insert id="addContent" parameterType="course.javaweb.model.Content">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO `course`.`content` (`price`, `num`, `sellerId`, `title`, `icon`, `summary`, `detail`)
+        VALUES (#{price}, #{num}, #{sellerId}, #{title}, #{image}, #{summary}, #{detail});
+    </insert>
 
     <select id="getContentInfo" resultMap="contentMap">
         SELECT id, price, title, icon, summary, detail, num, sellerId
