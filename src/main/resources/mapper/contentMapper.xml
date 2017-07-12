@@ -58,6 +58,11 @@
         WHERE id = #{id}
     </select>
 
+    <delete id="deleteContent" parameterType="Integer">
+        DELETE FROM content
+        WHERE id = #{id}
+    </delete>
+
     <!--&lt;!&ndash; 根据条件查询数据 &ndash;&gt;-->
     <!--<select id="findContentByCondition" resultMap="contentMap" parameterType="map">-->
         <!--SELECT-->

@@ -125,5 +125,28 @@ public class ProductServiceImpl implements ProductService {
         return buyList;
     }
 
+    public String deleteProduct(Product product){
+
+        if(product==null){
+            return "NullPointerException";
+        }
+        if(product.getId()==null||product.getId()==0){
+            return "GetIdFailed";
+        }
+        if(product.getIsSell()){
+            return "IsSell";
+        }
+
+        int affectedRow = contentDao.deleteContent(product.getId());
+
+
+        if( affectedRow == 1 ){
+            return "Success";
+        }else if( affectedRow == 0 ){
+            return "DeleteFailed";
+        }else{
+            return "DeleteError";
+        }
+    }
 
 }
