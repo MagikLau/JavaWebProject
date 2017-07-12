@@ -13,21 +13,25 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginAndLogoutController {
-    @Autowired
-    private LoginService loginService;
-
-//    private void setLoginService(LoginService loginService) {
-//        this.loginService = loginService;
-//    }
 
     @RequestMapping(value = "/login")
     public String login(HttpSession httpSession) {
-        System.out.println("user in sessionAttribute: " + httpSession.getAttribute("user"));
-            return "login";
+        System.out.println("user in sessionAttribute: "+httpSession.getAttribute("user"));
+
+//        if (user!=null) {
+//            System.out.println("Not login yet. User: "+user);
+//            System.out.println("Before setting sessionAttribute. Attribute'User': "+httpSession.getAttribute("user"));
+//            httpSession.setAttribute("user", user);
+//            System.out.println("After setting sessionAttribute. Attribute'User': "+httpSession.getAttribute("user"));
+//        } else{
+//            System.out.println("Unknow error.");
+//        }
+        return "login";
+
     }
 
     @RequestMapping("/logout")
-    public String logout(ModelMap modelMap,HttpSession httpSession) {
+    public String logout(ModelMap modelMap, HttpSession httpSession) {
         modelMap.remove("user");
         httpSession.removeAttribute("user");
         return "login";

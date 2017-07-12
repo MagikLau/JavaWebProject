@@ -38,8 +38,8 @@
 		check:function(){
 			var result = true;
 			[
-				[userName,function(value){return value == ''}],
-				[password,function(value){return value == ''}]
+				[userName,function(value){return value === ''}],
+				[password,function(value){return value === ''}]
 			].forEach(function(item){
 				var value = item[0].value.trim();
 				if(item[1](value)){

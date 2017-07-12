@@ -23,15 +23,13 @@ public class LoginServiceImpl implements LoginService {
         user.setPassword(password);
 
         User userInfo = userDao.getUserInfo(user);
-        System.out.println("ServiceuserInfo:" + userInfo);
-        System.out.println("Serviceuser:" + user);
-
+        System.out.println("userInfo in service: "+userInfo);
+        System.out.println("user in service: "+user);
         if (userInfo != null) {
             if (userInfo.getPassword().equals(user.getPassword())) {
-                BeanUtils.copyProperties(userInfo, user);
-                System.out.println("Serviceuser2:" + user );
-            }else {
-                System.out.println("wrong");
+                System.out.println("Password checked.");
+            }else{
+                System.out.println("Wrong password.");
                 userInfo = null;
             }
         }

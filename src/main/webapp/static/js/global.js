@@ -29,7 +29,7 @@
 		},
 		findOne:function(array,id){
 			return array.filter(function(item){
-				return item.id == id;
+				return item.id === id;
 			})[0];
 		},
 		modifyOne:function(array,id,num){
@@ -60,11 +60,11 @@
         options.type = (options.type || "POST").toUpperCase();
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function(){
-            if(xhr.readyState == 4){
+            if(xhr.readyState === 4){
                 var status = xhr.status;
-                if(status >= 200 && status < 300 || status == 304){
+                if(status >= 200 && status < 300 || status === 304){
                 	var json = JSON.parse(xhr.responseText);
-                	if(json && json.code == 200){
+                	if(json && json.code === 200){
                 		options.success && options.success(json.result);
                 	}else{
                 		options.error && options.error(json.message);
@@ -73,8 +73,8 @@
                     options.error && options.error('请求失败');
                 }
             }
-        }
-        if(options.type == "POST"){
+        };
+        if(options.type === "POST"){
             xhr.open("POST", options.url, true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.send(util.serialize(options.data));
@@ -82,12 +82,12 @@
         	xhr.open("GET", options.url + "?" + formatParams(options.data), true);
             xhr.send(null);
         }
-    }    
+    };
 
 	//layer
 	var Layer = function(){
 		this.init();
-	}
+	};
 	Layer.prototype = {
 		init:function(){
 			this.isConfirmed = false;
@@ -109,11 +109,11 @@
 			this.body.addEventListener('click',function(e){
 				var ele = e.target;
 				var action = ele.dataset && ele.dataset.action;
-				if(action == 'confirm'){
+				if(action === 'confirm'){
 					this.confirm();
 					return;
 				}
-				if(action == 'cancel'){
+				if(action === 'cancel'){
 					this.hide();
 					return;
 				}
@@ -152,7 +152,7 @@
 	//loading
 	var Loading = function(){
 		this.init();
-	}
+	};
 	Loading.prototype = {
 		init:function(){
 			this.template ='<div class="v-load {class}"><div class="load"><i></i><b>{message}</b></div></div>';

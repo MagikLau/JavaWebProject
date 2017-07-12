@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- content -->
+<mapper namespace="course.javaweb.dao.ContentDao">
+    <!-- 结果映射 -->
+    <resultMap id="contentMap" type="course.javaweb.model.Content">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="sellerId" property="sellerId" jdbcType="INTEGER" />
+        <result column="num" property="num" jdbcType="INTEGER" />
+        <result column="price" property="price" jdbcType="BIGINT" />
+        <result column="title" property="title" jdbcType="VARCHAR" />
+        <result column="icon" property="image" jdbcType="VARCHAR" />
+        <result column="summary" property="summary" jdbcType="VARCHAR" />
+        <result column="detail" property="detail" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <resultMap id="productMap" type="course.javaweb.model.Product">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="sellerId" property="sellerId" jdbcType="INTEGER" />
+        <result column="num" property="num" jdbcType="INTEGER" />
+        <result column="price" property="price" jdbcType="BIGINT" />
+        <result column="title" property="title" jdbcType="VARCHAR" />
+        <result column="icon" property="image" jdbcType="VARCHAR" />
+        <result column="summary" property="summary" jdbcType="VARCHAR" />
+        <result column="detail" property="detail" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <!-- 表所有字段 -->
+    <sql id="selectAll">
+        SELECT id, price, title, icon, summary, detail, num, sellerId
+    </sql>
+
+    <select id="getContentInfo" resultMap="contentMap">
+        SELECT id, price, title, icon, summary, detail, num, sellerId
+        FROM content
+        WHERE id = #{id}
+    </select>
+    
+    <!-- 查询所有数据 -->
+    <select id="findContentAll" resultMap="contentMap">
+        SELECT id, price, title, icon, summary, detail, num, sellerId
+        <!--<include refid="selectAll" />-->
+        FROM content
+    </select>
+
+    <!-- 查询对应产品 -->
+    <select id="getProduct" resultMap="productMap" >
+        SELECT id, price, title, icon, summary, detail, num, sellerId
+        FROM content
+        WHERE id = #{id}
+    </select>
+
+    <!--&lt;!&ndash; 根据条件查询数据 &ndash;&gt;-->
+    <!--<select id="findContentByCondition" resultMap="contentMap" parameterType="map">-->
+        <!--SELECT-->
+        <!--<include refid="allColumns" />-->
+        <!--FROM content WHERE 1 = 1-->
+        <!--<if test="price != null and price != ''">-->
+            <!--AND price LIKE CONCAT('%',#{price},'%')-->
+        <!--</if>-->
+        <!--<if test="title != null and title != ''">-->
+            <!--AND title LIKE CONCAT('%',#{title},'%')-->
+        <!--</if>-->
+    <!--</select>-->
+    <!---->
+    <!--&lt;!&ndash; 根据主键查询数据 &ndash;&gt;-->
+    <!--<select id="findContentByIds" resultMap="contentMap" parameterType="list">-->
+        <!--SELECT-->
+        <!--<include refid="allColumns" />-->
+        <!--FROM content WHERE id IN-->
+        <!--<foreach collection="list" index="index" item="id" open="(" separator="," close=")">-->
+            <!--#{id}-->
+        <!--</foreach>-->
+    <!--</select>-->
+    <!---->
+    <!--&lt;!&ndash; 插入数据 &ndash;&gt;-->
+    <!--<insert id="insertContent" parameterType="map">-->
+        <!--INSERT INTO content (<include refid="allColumns" />)-->
+        <!--VALUES (-->
+            <!--#{id},-->
+            <!--#{price},-->
+            <!--#{title},-->
+            <!--#{icon},-->
+            <!--#{abstractInfo},-->
+            <!--#{text}-->
+        <!--)-->
+    <!--</insert>-->
+    <!---->
+    <!--&lt;!&ndash; 批量插入数据 &ndash;&gt;-->
+    <!--<insert id="insertContents" parameterType="list">-->
+        <!--INSERT INTO content (<include refid="allColumns" />)-->
+        <!--VALUES-->
+        <!--<foreach collection="list" index="index" item="item" separator=",">-->
+            <!--(-->
+                <!--#{item.id},-->
+                <!--#{item.price},-->
+                <!--#{item.title},-->
+                <!--#{item.icon},-->
+                <!--#{item.abstractInfo},-->
+                <!--#{item.text}-->
+            <!--)-->
+        <!--</foreach>-->
+    <!--</insert>-->
+    <!---->
+    <!--&lt;!&ndash; 修改数据 &ndash;&gt;-->
+    <!--<update id="updateContent" parameterType="map">-->
+        <!--UPDATE content SET-->
+            <!--price = #{price},-->
+            <!--title = #{title},-->
+            <!--icon = #{icon},-->
+            <!--abstractInfo = #{abstractInfo},-->
+            <!--text = #{text}-->
+        <!--WHERE id = #{id}-->
+    <!--</update>-->
+    <!---->
+    <!--&lt;!&ndash; 批量修改数据 &ndash;&gt;-->
+    <!--<update id="updateContents" parameterType="list">-->
+        <!--<foreach collection="list" index="index" item="item" separator=";">-->
+            <!--UPDATE content SET-->
+                <!--price = #{item.price},-->
+                <!--title = #{item.title},-->
+                <!--icon = #{item.icon},-->
+                <!--abstractInfo = #{item.abstractInfo},-->
+                <!--text = #{item.text}-->
+            <!--WHERE id = #{item.id}-->
+        <!--</foreach>-->
+    <!--</update>-->
+    <!---->
+    <!--&lt;!&ndash; 根据主键删除数据 &ndash;&gt;-->
+    <!--<delete id="deleteContentById" parameterType="string">-->
+        <!--DELETE FROM content WHERE id = #{id}-->
+    <!--</delete>-->
+    <!---->
+    <!--&lt;!&ndash; 根据主键批量删除数据 &ndash;&gt;-->
+    <!--<delete id="deleteContentByIds" parameterType="list">-->
+        <!--DELETE FROM content WHERE id IN-->
+        <!--<foreach collection="list" index="index" item="id" open="(" separator="," close=")">-->
+            <!--#{id}-->
+        <!--</foreach>-->
+    <!--</delete>-->
+</mapper>
