@@ -55,8 +55,13 @@
 			onconfirm:function(){
 				layer.hide();
 				loading.show();
-				loading.result('添加购物车成功');
-			}.bind(this)
+                if($('allNum').textContent > 0){
+                    loading.result('添加购物车成功');
+                }
+				else{
+                    loading.result('商品数量为零');
+                }
+            }.bind(this)
 		}).show();
 		return;
 	};

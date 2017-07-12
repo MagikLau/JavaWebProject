@@ -24,4 +24,7 @@ public class TrxServiceImpl implements TrxService {
 
         return result;
     }
+    public void addTrx(){
+
+    }
 }

@@ -51,6 +51,7 @@
 					util.modifyOne(products,id,num);
 				}
 			}
+           // util.setCookie('products',products);
 			return false;
 		};
 	};

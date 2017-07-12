@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface TrxService {
     List<Trx> findTrxAllByUser(User user);
+    void addTrx();
 }
