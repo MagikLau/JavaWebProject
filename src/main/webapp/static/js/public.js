@@ -59,11 +59,15 @@
 		            xhr.open("post", "/api/upload", true);
 		            xhr.onload = function () {
 		            	  if (xhr.status === 200) {
-		            	    alert("文件上传成功");
 		            	    var o = JSON.parse(xhr.responseText);
-		            	    imageUrl = o && o.result;
-		            	    image.value = imageUrl;
-		            	    imgpre.src = imageUrl;
+                              if (o && o.code === 200) {
+                                  alert("文件上传成功");
+                                  imageUrl = o && o.result;
+                                  image.value = imageUrl;
+                                  imgpre.src = imageUrl;
+                              } else {
+                                  alert('上传失败;仅允许jpg');
+                              }
 		            	  } else {
 		            	    alert('An error occurred!');
 		            	  }

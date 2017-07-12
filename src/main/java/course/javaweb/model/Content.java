@@ -2,18 +2,18 @@ package course.javaweb.model;
 
 public class Content {
 
-    private long id;
+    private int id;
     private long price;
     private String title;
     private String icon;
     private String summary;
     private String text;
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
