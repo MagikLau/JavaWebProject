@@ -11,7 +11,7 @@
     </div>
     <#else>
     <div class="n-show f-cb" id="showContent">
-        <div class="img"><img src="/static/image/${product.image}" alt="" ></div>
+        <div class="img"><img src="${product.image}" alt="" ></div>
         <div class="cnt">
             <h2>${product.title}</h2>
             <p class="summary">${product.summary}</p>

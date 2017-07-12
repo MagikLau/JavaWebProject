@@ -9,4 +9,5 @@ public interface ContentDao {
     Content getContentInfo(Content content);
     List<Content> findContentAll();
     Product getProduct(Content content);
+    void addContent(Content content);
 }

@@ -34,13 +34,13 @@
 		$('newTable').onclick = function(e){
 			var e = arguments[0] || window.event;
 			target = e.srcElement ? e.srcElement : e.target;
-			if(target.nodeName == "SPAN" && target.className == "moreNum"){
+			if(target.nodeName === "SPAN" && target.className === "moreNum"){
 				var num = target.parentElement.children[1].textContent;
 				var id = target.parentElement.children[2].textContent;
 				num ++;
 				target.parentElement.children[1].textContent = num;
 				util.modifyOne(products,id,num);
-			}else if(target.nodeName == "SPAN" && target.className == "lessNum"){
+			}else if(target.nodeName === "SPAN" && target.className === "lessNum"){
 				var num = target.parentElement.children[1].textContent;
 				var id = target.parentElement.children[2].textContent;
 				num --;
@@ -73,11 +73,11 @@
 					var xhr = new XMLHttpRequest();
 					var data = JSON.stringify(newProducts);
 					xhr.onreadystatechange = function(){
-						 if(xhr.readyState == 4){
+						 if(xhr.readyState === 4){
 				                var status = xhr.status;
-				                if(status >= 200 && status < 300 || status == 304){
+				                if(status >= 200 && status < 300 || status === 304){
 				                	var json = JSON.parse(xhr.responseText);
-				                	if(json && json.code == 200){
+				                	if(json && json.code === 200){
 				                		loading.result('购买成功',function(){location.href = './account.html';});
 				                		util.deleteCookie(name);
 				                	}else{
