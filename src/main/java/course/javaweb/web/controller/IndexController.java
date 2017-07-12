@@ -3,19 +3,15 @@ package course.javaweb.web.controller;
 import course.javaweb.dao.TrxDao;
 import course.javaweb.model.Content;
 import course.javaweb.model.Product;
-import course.javaweb.model.Trx;
 import course.javaweb.model.User;
 import course.javaweb.service.ContentService;
 import course.javaweb.service.ProductService;
-import course.javaweb.service.TrxService;
-import course.javaweb.util.ProductUtil;
+import course.javaweb.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -23,7 +19,6 @@ public class IndexController {
 
     private ContentService contentService;
     private ProductService productService;
-    private TrxDao trxDao;
     @Autowired
     public void setContentService(ContentService contentService) {
         this.contentService = contentService;
@@ -32,16 +27,15 @@ public class IndexController {
     public void setProductService(ProductService productService) {
         this.productService = productService;
     }
-    @Autowired
-    public void setTrxDao(TrxDao trxDao) {
-        this.trxDao = trxDao;
-    }
 
     @RequestMapping(path = {"/", "/index"})
     public String index(ModelMap modelMap, HttpSession httpSession) {
         System.out.println("httpSession in indexController: "+httpSession.getAttribute("user"));
         User loginUser = (User) httpSession.getAttribute("user");
         List<Content> contentList = contentService.findContentAll();
+        if( contentList != null ){
+            StringUtil.fileNum = contentList.get(contentList.size()-1).getId()+1;//设置文件上传时使用的编号
+        }
         List<Product> productList;
         if( loginUser == null ){
 //            modelMap.addAttribute("productList", contentList);
