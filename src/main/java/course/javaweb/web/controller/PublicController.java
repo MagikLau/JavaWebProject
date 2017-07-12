@@ -1,6 +1,5 @@
 package course.javaweb.web.controller;
 
-import com.sun.deploy.net.HttpResponse;
 import course.javaweb.model.Content;
 import course.javaweb.model.User;
 import course.javaweb.service.ContentService;
@@ -17,9 +16,8 @@ public class PublicController {
     private ContentService contentService;
 
     @Autowired
-    public PublicController setContentService(ContentService contentService) {
+    public void setContentService(ContentService contentService) {
         this.contentService = contentService;
-        return this;
     }
 
     @RequestMapping("/public")

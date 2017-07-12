@@ -10,4 +10,5 @@ public interface ContentDao {
     List<Content> findContentAll();
     Product getProduct(Content content);
     void addContent(Content content);
+    int deleteContent(Integer id);
 }
