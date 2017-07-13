@@ -10,5 +10,5 @@ public interface ContentService {
     List<Content> findContentAll();
     Content getContentInfo(Integer id);
     Content addContent(Integer userid, Integer price, String title, String image, String summary, String detail, Integer num);
-
+    Content updateContent(Content content);
 }

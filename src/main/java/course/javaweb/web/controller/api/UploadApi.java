@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 
@@ -28,7 +29,7 @@ public class UploadApi {
 
     @RequestMapping(value = "/api/upload")
     @ResponseBody
-    public ModelMap Upload(@RequestParam("file") MultipartFile file, ModelMap modelMap, HttpServletRequest request) {
+    public ModelMap Upload(@RequestParam("file") MultipartFile file, ModelMap modelMap, HttpServletRequest request, HttpSession httpSession) {
 
         String fileType = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")); // 文件后缀
         System.out.println("fileType is "+fileType);
@@ -36,13 +37,28 @@ public class UploadApi {
             String realPath = request.getSession().getServletContext().getRealPath("/static/image");
             System.out.println("realPath is "+realPath);
 
+//            String fileName = file.getOriginalFilename();
+//
+//            fileName = StringUtil.renameFileName(fileName);
+//
+//            String webFile = "/static/image/" + fileName;
+//            String realFile = realPath + "/" + fileName;
+
             String fileName = file.getOriginalFilename();
-
             fileName = StringUtil.renameFileName(fileName);
+            Content product = (Content) httpSession.getAttribute("editProduct");
 
-
+            System.out.println("uploadProduct: "+product);
             String webFile = "/static/image/" + fileName;
-            String realFile = realPath + "/" + fileName;
+            if( product == null ){//new
+                fileName = StringUtil.renameFileName(fileName);
+            }else{
+                Content content = contentService.getContentInfo(product.getId());
+                webFile = content.getImage();
+                fileName = webFile.substring(webFile.lastIndexOf('/')+1);
+                System.out.println("sub: "+fileName);
+            }
+
             try {
                 File targetFile = new File(realPath, fileName);
 //                file.transferTo(new File(realFile));
@@ -50,7 +66,6 @@ public class UploadApi {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            System.out.println("realFile is "+realFile);
             System.out.println("webFile is "+webFile);
             modelMap.addAttribute("code", 200);
             modelMap.addAttribute("message", "success");
