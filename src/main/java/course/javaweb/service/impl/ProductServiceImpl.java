@@ -113,6 +113,7 @@ public class ProductServiceImpl implements ProductService {
             buyList = new ArrayList<Product>();
             for ( Trx t : trxList ){
                 Content content = new Content();
+                content.setId(t.getContentId());
                 Product product = contentDao.getProduct(content);
                 product.setBuyNum(t.getNum());
                 product.setBuyPrice(t.getPrice());

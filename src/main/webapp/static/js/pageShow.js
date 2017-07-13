@@ -2,7 +2,7 @@
 	var $ = function(id){
 		return document.getElementById(id);
 	}
-	
+
 	$('plusNum').onclick = function(e){
 		e = window.event || e;
 		o = e.srcElement || e.target;
@@ -22,11 +22,11 @@
 		num ++;
 		$('allNum').innerHTML = num;
 	};
-	
+
 	var loading = new Loading();
 	var layer = new Layer();
 
-	
+
 	$('add').onclick = function(e){
 		var ele = e.target;
 		var id = ele && ele.dataset.id;
@@ -37,31 +37,35 @@
 		var name = 'products';
 		var productList1 = new Array;
 		var productList = util.getCookie(name);
-		if(productList == "" || productList == null){
-			productList1.push(productDetail);
-			util.setCookie(name,productList1);
-		}else if(util.findOne(productList,id)){
-			util.modifyTwo(productList,id,num);
-			util.setCookie(name,productList);
-		}else{
-			productList.push(productDetail);
-			util.setCookie(name,productList);
+		if(num > 0 ){
+			if(productList == "" || productList == null){
+				productList1.push(productDetail);
+				util.setCookie(name,productList1);
+			}else if(util.findOne(productList,id)){
+				if(num > 0){
+					util.modifyTwo(productList,id,num);
+					util.setCookie(name,productList);
+				}
+			}else{
+				productList.push(productDetail);
+				util.setCookie(name,productList);
+			}
 		}
 		console.log(document.cookie);
-//		util.deleteCookie(name);
+	//		util.deleteCookie(name);
 		e == window.event || e;
 		layer.reset({
 			content:'确认加入购物车吗？',
 			onconfirm:function(){
 				layer.hide();
 				loading.show();
-                if($('allNum').textContent > 0){
-                    loading.result('添加购物车成功');
-                }
+				if($('allNum').textContent > 0){
+					loading.result('添加购物车成功');
+				}
 				else{
-                    loading.result('商品数量为零');
-                }
-            }.bind(this)
+					loading.result('商品数量为零');
+				}
+			}.bind(this)
 		}).show();
 		return;
 	};
