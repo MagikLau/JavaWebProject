@@ -41,4 +41,8 @@
         AND contentId = #{contentid}
     </select>
 
+    <insert id="addTrx" parameterType="Trx" useGeneratedKeys="true" keyProperty="id">
+        insert into trx (contentId, personId,price,time,num)
+        values(#{contentId},#{personId},#{price},#{time},#{num})
+    </insert>
 </mapper>

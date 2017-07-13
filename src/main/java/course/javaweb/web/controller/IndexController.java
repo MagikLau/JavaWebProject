@@ -8,7 +8,6 @@ import course.javaweb.model.User;
 import course.javaweb.service.ContentService;
 import course.javaweb.service.ProductService;
 import course.javaweb.service.TrxService;
-import course.javaweb.util.ProductUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
