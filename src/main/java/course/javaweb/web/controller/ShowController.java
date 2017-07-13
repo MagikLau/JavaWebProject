@@ -37,6 +37,7 @@ public class ShowController {
             System.out.println("In show : modelMap.get(\"product\"): (in fact: content) "+modelMap.get("product"));
         }else{
             product = productService.getProduct(content, loginUser);
+            product.setBuyNum(1);
             modelMap.addAttribute("product", product );
             System.out.println("In show : modelMap.get(\"product\"): "+modelMap.get("product"));
         }
