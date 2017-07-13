@@ -1,6 +1,9 @@
 package course.javaweb.web.controller.api;
 
+import course.javaweb.model.Content;
+import course.javaweb.service.ContentService;
 import course.javaweb.util.StringUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,16 +18,29 @@ import java.io.IOException;
 
 @Controller
 public class UploadApi {
+
+    private ContentService contentService;
+
+    @Autowired
+    public void setContentService(ContentService contentService) {
+        this.contentService = contentService;
+    }
+
     @RequestMapping(value = "/api/upload")
     @ResponseBody
-    public ModelMap Upload(@RequestParam("file") MultipartFile file, ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
+    public ModelMap Upload(@RequestParam("file") MultipartFile file, ModelMap modelMap, HttpServletRequest request) {
 
         String fileType = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")); // 文件后缀
         System.out.println("fileType is "+fileType);
         if (fileType.equalsIgnoreCase(".jpg")) {//FileType
             String realPath = request.getSession().getServletContext().getRealPath("/static/image");
             System.out.println("realPath is "+realPath);
-            String fileName = StringUtil.renameFileName(file.getOriginalFilename());
+
+            String fileName = file.getOriginalFilename();
+
+            fileName = StringUtil.renameFileName(fileName);
+
+
             String webFile = "/static/image/" + fileName;
             String realFile = realPath + "/" + fileName;
             try {

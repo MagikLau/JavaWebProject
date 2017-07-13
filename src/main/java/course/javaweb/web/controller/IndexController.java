@@ -33,9 +33,9 @@ public class IndexController {
         System.out.println("httpSession in indexController: "+httpSession.getAttribute("user"));
         User loginUser = (User) httpSession.getAttribute("user");
         List<Content> contentList = contentService.findContentAll();
-        if( contentList != null ){
-            StringUtil.fileNum = contentList.get(contentList.size()-1).getId()+1;//设置文件上传时使用的编号
-        }
+//        if( contentList != null ){
+//            StringUtil.fileNum = contentList.get(contentList.size()-1).getId()+1;//设置文件上传时使用的编号
+//        }
         List<Product> productList;
         if( loginUser == null ){
 //            modelMap.addAttribute("productList", contentList);

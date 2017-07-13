@@ -26,7 +26,7 @@ public class DeleteProductApi {
 
     @RequestMapping(value = "/api/delete", method = RequestMethod.POST)
     @ResponseBody
-    public ModelMap deleteProductApi(@RequestParam("id") Integer id, HttpSession httpSession, ModelMap modelMap){
+    public ModelMap deleteProduct(@RequestParam("id") Integer id, HttpSession httpSession, ModelMap modelMap){
 
         System.out.println("data in deleteProductApi: "+id);
 
