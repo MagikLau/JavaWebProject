@@ -5,19 +5,13 @@ import course.javaweb.model.Product;
 import course.javaweb.model.User;
 import course.javaweb.service.ContentService;
 import course.javaweb.service.ProductService;
-import course.javaweb.service.TrxService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import static javafx.scene.input.KeyCode.H;
 
 @Controller
 public class ShowController {

@@ -24,17 +24,16 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/account")
-    public ModelAndView account(ModelMap modelMap, HttpSession httpSession) {
+    public ModelAndView account( HttpSession httpSession) {
         User loginUser = (User) httpSession.getAttribute("user");
         List<Product> productList = null;
         if( loginUser == null ){
-
+            System.out.println("Not Login yet in account.");
         }else{
 //            httpSession.removeAttribute("productList");
-//            modelMap.remove("productList");
             System.out.println("In AccountC LoginUser: "+loginUser);
-            productList = productService.getProductList(loginUser);
-//            modelMap.addAttribute("buyList", productList);
+            productList = productService.getBuyList(loginUser);
+            System.out.println("In AccountC productList: "+productList);
 //            httpSession.setAttribute("buyList", productList);
         }
         return new ModelAndView("account","buyList",productList);

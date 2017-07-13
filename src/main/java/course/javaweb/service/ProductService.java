@@ -9,4 +9,6 @@ import java.util.List;
 public interface ProductService {
     Product getProduct(Content content, User user);
     List<Product> getProductList(User user);
+    List<Product> getBuyList(User user);
+    String deleteProduct(Product product);
 }

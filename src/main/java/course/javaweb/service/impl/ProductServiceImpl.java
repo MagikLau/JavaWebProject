@@ -18,6 +18,7 @@ public class ProductServiceImpl implements ProductService {
 
     private ContentDao contentDao;
     private TrxDao trxDao;
+
     @Autowired
     public void setContentDao(ContentDao contentDao) {
         this.contentDao = contentDao;
@@ -63,7 +64,7 @@ public class ProductServiceImpl implements ProductService {
             }
 
         }
-        System.out.println("product in ProductServce: "+product);
+        System.out.println("product in ProductService: "+product);
         return product;
     }
 
@@ -76,6 +77,9 @@ public class ProductServiceImpl implements ProductService {
             Trx trx = trxDao.getTrx(content.getId(), user.getId());
             if( trx != null ) {
                 product.setIsBuy(true);
+                product.setBuyNum(trx.getNum());
+                product.setBuyPrice(trx.getPrice());
+                product.setTime(trx.getTime());
             }else{
                 product.setIsBuy(false);
             }
@@ -98,9 +102,51 @@ public class ProductServiceImpl implements ProductService {
 
             productList.add(product);
         }
-        System.out.println("productList in ProductServce: "+productList);
+        System.out.println("productList in ProductService: "+productList);
         return productList;
     }
 
+    public List<Product> getBuyList(User user){
+        List<Product> buyList = null;
+        List<Trx> trxList = trxDao.findTrxAllByUser(user.getId());
+        if( trxList != null ){
+            buyList = new ArrayList<Product>();
+            for ( Trx t : trxList ){
+                Content content = new Content();
+                Product product = contentDao.getProduct(content);
+                product.setBuyNum(t.getNum());
+                product.setBuyPrice(t.getPrice());
+                product.setIsBuy(true);
+                product.setTime(t.getTime());
+                buyList.add(product);
+            }
+        }
+        System.out.println("buyList in getBuyList: "+buyList);
+        return buyList;
+    }
+
+    public String deleteProduct(Product product){
+
+        if(product==null){
+            return "NullPointerException";
+        }
+        if(product.getId()==null||product.getId()==0){
+            return "GetIdFailed";
+        }
+        if(product.getIsSell()){
+            return "IsSell";
+        }
+
+        int affectedRow = contentDao.deleteContent(product.getId());
+
+
+        if( affectedRow == 1 ){
+            return "Success";
+        }else if( affectedRow == 0 ){
+            return "DeleteFailed";
+        }else{
+            return "DeleteError";
+        }
+    }
 
 }
