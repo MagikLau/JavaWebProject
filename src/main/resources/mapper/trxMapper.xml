@@ -41,4 +41,12 @@
         AND contentId = #{contentid}
     </select>
 
+    <insert id="addTrx" parameterType="Trx" >
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into trx (contentId, personId,price,trx.time,num)
+        values (#{contentId},#{personId},#{price},now(),#{num})
+    </insert>
+
 </mapper>

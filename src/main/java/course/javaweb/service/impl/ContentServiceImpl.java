@@ -47,4 +47,9 @@ public class ContentServiceImpl implements ContentService {
 
         return content;
     }
+
+    public Content updateContent(Content content){
+        contentDao.updateContent(content);
+        return contentDao.getContentInfo(content);
+    }
 }

@@ -26,7 +26,7 @@ public class PublicController {
     }
 
     @RequestMapping("/publicSubmit")
-    public String publicSubmit(ModelMap modelMap, HttpSession httpSession, //HttpResponse httpResponse,
+    public String publicSubmit(HttpSession httpSession,
                                @RequestParam("price") Integer price, @RequestParam("title") String title,
                                @RequestParam("image") String image, @RequestParam("summary") String summary,
                                @RequestParam("detail") String detail) {
@@ -35,12 +35,10 @@ public class PublicController {
             Content content = contentService.addContent(loginUser.getId(),
                     price, title, image, summary, detail, 1);
             System.out.println("content in Controller-publicSubmit: "+content);
-//            modelMap.addAttribute("product", content);
             httpSession.setAttribute("product", content);
         }else {
 
         }
-
         return "publicSubmit";
     }
 }
