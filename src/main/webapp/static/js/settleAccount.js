@@ -7,7 +7,7 @@
 	var products = util.getCookie(name);
 	var $ = function(id){
 		return document.getElementById(id);
-	}
+	};
 	
 	var str = "<tr>" + 
 			  "<th>" + '内容名称'  + "</th>"+ 
@@ -77,7 +77,7 @@
 				                if(status >= 200 && status < 300 || status === 304){
 				                	var json = JSON.parse(xhr.responseText);
 				                	if(json && json.code === 200){
-				                		loading.result('购买成功',function(){location.href = './account.html';});
+				                		loading.result('购买成功',function(){location.href = '/account';});
 				                		util.deleteCookie(name);
 				                	}else{
 				                		alert(json.message);

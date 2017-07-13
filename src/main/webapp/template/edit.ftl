@@ -7,7 +7,7 @@
     <div class="m-tab m-tab-fw m-tab-simple f-cb">
         <h2>内容编辑</h2>
     </div>
-    <#if !product>
+    <#if !product??>
     <div class="n-result">
         <h3>内容不存在！</h3>
     </div>
