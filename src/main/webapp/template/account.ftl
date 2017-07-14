@@ -21,7 +21,7 @@
         </thead>
         <tbody>
             <#list buyList as x>
-            <#assign total = total + x.buyPrice>
+            <#assign total = total + x.buyPrice*x.buyNum>
             <tr>
                 <td><a href="/show?id=${x.id}"><img src="${x.image}" alt=""></a></td>
                 <td><h4><a href="/show?id=${x.id}">${x.title}</a></h4></td>
