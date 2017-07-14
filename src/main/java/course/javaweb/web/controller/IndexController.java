@@ -11,8 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class IndexController {
@@ -29,7 +34,7 @@ public class IndexController {
     }
 
     @RequestMapping(path = {"/", "/index"})
-    public String index(ModelMap modelMap, HttpSession httpSession) {
+    public String index(ModelMap modelMap, HttpSession httpSession, @RequestParam(value = "type", required = false) Integer type) {
         System.out.println("httpSession in indexController: "+httpSession.getAttribute("user"));
         User loginUser = (User) httpSession.getAttribute("user");
         List<Content> contentList = contentService.findContentAll();
@@ -37,6 +42,11 @@ public class IndexController {
 //            StringUtil.fileNum = contentList.get(contentList.size()-1).getId()+1;//设置文件上传时使用的编号
 //        }
         List<Product> productList;
+
+        if( type == null) type = 0;
+
+        httpSession.setAttribute("listType", type);
+
         if( loginUser == null ){
 //            modelMap.addAttribute("productList", contentList);
             httpSession.setAttribute("productList", contentList);
@@ -45,6 +55,15 @@ public class IndexController {
 //            modelMap.remove("productList");
             System.out.println("In IndexC LoginUser: "+loginUser);
             productList = productService.getProductList(loginUser);
+
+            if (type.equals(1)) {
+                for (Iterator<Product> iterator = productList.iterator(); iterator.hasNext(); ) {
+                    Product product = iterator.next();
+                    if (product.getIsBuy()) {//已购买内容删除
+                        iterator.remove();
+                    }
+                }
+            }
 //            modelMap.addAttribute("productList", productList);
             httpSession.setAttribute("productList", productList);
         }
