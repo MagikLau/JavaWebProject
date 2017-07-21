@@ -8,7 +8,6 @@
     <context:property-placeholder location="classpath:db.xml"/>
 
     <!--DataSource配置注入-->
-
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
         <property name="driverClassName" value="${driverClassName}"/>
         <property name="url" value="${url}"/>
@@ -24,9 +23,7 @@
         <property name="typeAliasesPackage" value="course.javaweb.model"/>
     </bean>
 
-
     <!--配置MapperScannerConfigurer-->
-
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="course.javaweb.dao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>

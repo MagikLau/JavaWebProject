@@ -11,8 +11,8 @@ public class Content {
     /** 卖家ID */
     private Integer sellerId;
 
-    /** 贩卖数量 */
-    private Integer num;
+//    /** 贩卖数量 */ //内容购买 不应该有数量
+//    private Integer num;
 
     /** 标题 */
     private String title;
@@ -72,13 +72,13 @@ public class Content {
         this.sellerId = sellerId;
     }
 
-    public Integer getNum() {
-        return num;
-    }
-
-    public void setNum(Integer num) {
-        this.num = num;
-    }
+//    public Integer getNum() {
+//        return num;
+//    }
+//
+//    public void setNum(Integer num) {
+//        this.num = num;
+//    }
 
     /**
      * 获取标题
@@ -162,7 +162,7 @@ public class Content {
                 "id=" + id +
                 ", price=" + price +
                 ", sellerId=" + sellerId +
-                ", num=" + num +
+//                ", num=" + num +
                 ", title='" + title + '\'' +
                 ", image='" + image + '\'' +
                 ", summary='" + summary + '\'' +

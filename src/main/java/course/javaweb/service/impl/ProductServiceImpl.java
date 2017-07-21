@@ -30,39 +30,23 @@ public class ProductServiceImpl implements ProductService {
 
     public Product getProduct(Content content, User user){
         Product product = contentDao.getProduct(content);
-        List<Trx> trxList = trxDao.findTrxAllByContent(content.getId());
-        Trx trx = trxDao.getTrx(content.getId(), user.getId());
         if( user.getUserType() == 0 ){
+            Trx trx = trxDao.getTrx(content.getId(), user.getId());
+            product.setIsSell(false);
             if( trx != null ){
                 product.setIsBuy(true);
-                product.setBuyNum(trx.getNum());
                 product.setBuyPrice(trx.getPrice());
                 product.setTime(trx.getTime());
-            }else{
-                product.setIsSell(false);
-                product.setBuyNum(0);
             }
-
         }else if( user.getUserType() == 1 ){
-            if( trx != null ){
-//                if( trx.getNum() > 0 ){//只做已有售卖记录的标记
-//                    product.setIsSell(true);
-//                }
-                Integer sumSellNum = 0;
-                for( Trx t : trxList ){
-                    sumSellNum += t.getNum();
-                }
-                if( sumSellNum >= content.getNum() ){//超出售卖数的标记
-                    product.setIsSell(true);//即完卖标记
-                }else {
-                    product.setBuyNum(sumSellNum);
-                    product.setIsSell(false);
-                }
-
-            }else {
-                product.setIsSell(false);
+            List<Trx> trxList = trxDao.findTrxAllByContent(content.getId());
+            product.setIsSell(false);
+            if( !trxList.isEmpty() ){
+                System.out.println("Seller: getProduct- setIsSell");
+                product.setBuyNum(trxList.size());
+                product.setIsSell(true);
             }
-
+            System.out.println("IsSell? "+product.getIsSell());
         }
         System.out.println("product in ProductService: "+product);
         return product;
@@ -70,36 +54,28 @@ public class ProductServiceImpl implements ProductService {
 
     public List<Product> getProductList(User user){
         List<Product> productList = new ArrayList<Product>();
-        List<Trx> trxList = trxDao.findTrxAllByUser(user.getId());
         List<Content> contentList = contentDao.findContentAll();
         for( Content content : contentList ){
             Product product = contentDao.getProduct(content);
-            Trx trx = trxDao.getTrx(content.getId(), user.getId());
-            if( trx != null ) {
-                product.setIsBuy(true);
-                product.setBuyNum(trx.getNum());
-                product.setBuyPrice(trx.getPrice());
-                product.setTime(trx.getTime());
-            }else{
+
+            if( user.getUserType() == 0 ){
+                Trx trx = trxDao.getTrx(content.getId(), user.getId());
                 product.setIsBuy(false);
-            }
-            if( user.getUserType() == 1 ){
-                if( trx != null && content.getSellerId().equals(user.getId()) ) {
-                    Integer sumSellNum = 0;
-                    for( Trx t : trxList ){
-                        sumSellNum += t.getNum();
-                    }
-                    if( sumSellNum >= content.getNum() ){//超出售卖数的标记
-                        product.setIsSell(true);//即完卖标记
-                    }else {
-                        product.setBuyNum(sumSellNum);
-                        product.setIsSell(false);
-                    }
-                }else{
-                    product.setIsSell(false);
+                if( trx != null ) {
+                    product.setIsBuy(true);
+                    product.setBuyPrice(trx.getPrice());
+                    product.setTime(trx.getTime());
+                }
+            }else if( user.getUserType() == 1 ){
+                List<Trx> trxList = trxDao.findTrxAllByContent(content.getId());
+                product.setIsSell(false);
+                if( !trxList.isEmpty() ) {
+                    System.out.println("Seller: getProductList- setIsSell");
+                    product.setBuyNum(trxList.size());
+                    product.setIsSell(true);
                 }
             }
-
+            System.out.println("IsSell? "+product.getIsSell());
             productList.add(product);
         }
         System.out.println("productList in ProductService: "+productList);
@@ -115,7 +91,7 @@ public class ProductServiceImpl implements ProductService {
                 Content content = new Content();
                 content.setId(t.getContentId());
                 Product product = contentDao.getProduct(content);
-                product.setBuyNum(t.getNum());
+//                product.setBuyNum(t.getNum());
                 product.setBuyPrice(t.getPrice());
                 product.setIsBuy(true);
                 System.out.println("t.getTime(): "+t.getTime());
