@@ -15,9 +15,11 @@
     </div>
     <#else>
     <table class="m-table m-table-row n-table g-b3">
-        <colgroup><col class="img"/><col/><col class="time"/><col/><col class="num"/><col/><col class="price"/><col/></colgroup>
+        <colgroup><col class="img"/><col/><col class="time"/><col/><col class="price"/><col/><col/><col/></colgroup>
         <thead>
-            <tr><th>内容图片</th><th>内容名称</th><th>购买时间</th><th>购买数量</th><th>购买价格</th></tr>
+            <tr >
+                <th>内容图片</th><th>内容名称</th><th>购买时间</th><th></th><th>购买价格</th>
+            </tr>
         </thead>
         <tbody>
             <#list buyList as x>
@@ -26,7 +28,7 @@
                 <td><a href="/show?id=${x.id}"><img src="${x.image}" alt=""></a></td>
                 <td><h4><a href="/show?id=${x.id}">${x.title}</a></h4></td>
                 <td><span class="v-time">${x.time?number_to_datetime?string("yyyy-MM-dd HH:mm")}</span></td>
-                <td><span class="v-num">${x.buyNum}</span></td>
+                <td><span class="v-num"><#--${x.buyNum}--></span></td> <#--内容购买 不应该有数量-->
                 <td><span class="v-unit">¥</span><span class="value">${x.buyPrice}</span></td>
             </tr>
             </#list>

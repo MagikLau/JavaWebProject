@@ -35,22 +35,23 @@ public class EditController {
 
     @RequestMapping("/editSubmit")
     public ModelAndView editSubmit(ModelMap modelMap, HttpSession httpSession,
-                                   @RequestParam("price") long price, @RequestParam("title") String title,
+                                   @RequestParam("price") double price, @RequestParam("title") String title,
                                    @RequestParam("image") String image, @RequestParam("summary") String summary,
                                    @RequestParam("detail") String detail,@RequestParam("id") Integer id) {
         Content product = new Content();
         Content content = null;
-        User loginUser = (User) httpSession.getAttribute("user");
+        User loginUser = null;
+        loginUser = (User) httpSession.getAttribute("user");
         product.setTitle(title);
         product.setSummary(summary);
         product.setDetail(detail);
         product.setImage(image);
         product.setSellerId(loginUser.getId());
         product.setId(id);
-        product.setNum(1);
-        product.setPrice(price);
+//        product.setNum(1);
+        product.setPrice((new Double(price)).longValue());
 
-        if( loginUser != null ){
+        if( loginUser.getId() != null ){
             content= contentService.updateContent(product);
             System.out.println("content in Controller-publicSubmit: "+content);
             httpSession.setAttribute("product", content);
@@ -59,7 +60,8 @@ public class EditController {
             modelMap.addAttribute("message", "success");
             modelMap.addAttribute("result", content.getImage());
         }else {
-
+            modelMap.addAttribute("code", 401);
+            modelMap.addAttribute("message", "notLogin");
         }
         return new ModelAndView("editSubmit","product",content);
     }

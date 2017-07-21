@@ -10,8 +10,8 @@
 	};
 	
 	var str = "<tr>" + 
-			  "<th>" + '内容名称'  + "</th>"+ 
-			  "<th>" + '数量' + "</th>" +
+			  "<th>" + '内容名称'  + "</th>"+
+			  "<th>" + '' + "</th>" +//不显示数量
 			  "<th>" + '价格' + "</th>" +
 			  "</tr>";
 
@@ -20,46 +20,46 @@
 		"<tr>" + 
 		"<td>" + products[i].title  + "</td>"+
 		"<td>" + 
-		"<span class=\"lessNum\">"+ "-" + "</span>" +
-		"<span class=\"totalNum\" id=\"allNum\">" + products[i].num + "</span>" +
+		// "<span class=\"lessNum\">"+ "-" + "</span>" +
+		// "<span class=\"totalNum\" id=\"allNum\">" + products[i].num + "</span>" +
 		"<span id=\"thisId\">" + products[i].id + "</span>" +
-		"<span class=\"moreNum\">"+ "+" + "</span>" + "</td>" +
+		// "<span class=\"moreNum\">"+ "+" + "</span>" + "</td>" +
 		"<td>" + products[i].price + "</td>" +
 		"</tr>";
 	}
 
 	$("newTable").innerHTML = str;
 
-	window.onload = function(){
-		$('newTable').onclick = function(e){
-			var e = arguments[0] || window.event;
-			target = e.srcElement ? e.srcElement : e.target;
-			if(target.nodeName === "SPAN" && target.className === "moreNum"){
-				var num = target.parentElement.children[1].textContent;
-				var id = target.parentElement.children[2].textContent;
-				num ++;
-				target.parentElement.children[1].textContent = num;
-				util.modifyOne(products,id,num);
-			}else if(target.nodeName === "SPAN" && target.className === "lessNum"){
-				var num = target.parentElement.children[1].textContent;
-				var id = target.parentElement.children[2].textContent;
-				num --;
-				if(num < 0){
-					alert("该商品数量为0");
-				}else{
-					target.parentElement.children[1].textContent = num;
-					util.modifyOne(products,id,num);
-				}
-			}
-			return false;
-		};
-	};
+	// window.onload = function(){
+	// 	$('newTable').onclick = function(e){
+	// 		var e = arguments[0] || window.event;
+	// 		target = e.srcElement ? e.srcElement : e.target;
+	// 		if(target.nodeName === "SPAN" && target.className === "moreNum"){
+	// 			var num = target.parentElement.children[1].textContent;
+	// 			var id = target.parentElement.children[2].textContent;
+	// 			num ++;
+	// 			target.parentElement.children[1].textContent = num;
+	// 			util.modifyOne(products,id,num);
+	// 		}else if(target.nodeName === "SPAN" && target.className === "lessNum"){
+	// 			var num = target.parentElement.children[1].textContent;
+	// 			var id = target.parentElement.children[2].textContent;
+	// 			num --;
+	// 			if(num < 0){
+	// 				alert("该商品数量为0");
+	// 			}else{
+	// 				target.parentElement.children[1].textContent = num;
+	// 				util.modifyOne(products,id,num);
+	// 			}
+	// 		}
+	// 		return false;
+	// 	};
+	// };
 
 	var loading = new Loading();
 	var layer = new Layer();
 	$('Account').onclick = function(e){
 		var newProducts = products.map(function(arr){
-			return {'id':arr.id,'number':arr.num};
+			return {'id':arr.id/*,'number':arr.num*/};
 		});
 		console.log(newProducts);
 		var ele = e.target;

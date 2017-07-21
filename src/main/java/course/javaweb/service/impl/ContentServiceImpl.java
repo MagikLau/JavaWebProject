@@ -38,7 +38,7 @@ public class ContentServiceImpl implements ContentService {
         content.setSummary(summary);
         content.setDetail(detail);
         content.setSellerId(userid);
-        content.setNum(num);
+//        content.setNum(num);
         System.out.println("Before AddContent in Service: "+content);
 
         contentDao.addContent(content);

@@ -4,7 +4,7 @@ public class Product extends Content{
     //继承Content来获得商品属性
     private boolean isBuy;
     private boolean isSell;
-    private Integer buyNum;
+    private Integer buyNum; //用于统计购买人数
     private Integer buyPrice;
     private Long time;
 

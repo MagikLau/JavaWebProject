@@ -361,7 +361,7 @@ select.u-ipt {
 }
 
 .v-value {
-    color: #333;
+    /*color: #333;*/
     font-size: 20px;
     font-weight: bold;
     color: #d22147;
@@ -673,6 +673,7 @@ select.u-ipt {
 
 .m-table th {
     background: #ebebeb;
+    text-align: center;
 }
 
 .m-table thead > :first-child > :first-child, .m-table tbody > :first-child > :first-child {
