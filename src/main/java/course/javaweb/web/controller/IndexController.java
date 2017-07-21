@@ -1,12 +1,10 @@
 package course.javaweb.web.controller;
 
-import course.javaweb.dao.TrxDao;
 import course.javaweb.model.Content;
 import course.javaweb.model.Product;
 import course.javaweb.model.User;
 import course.javaweb.service.ContentService;
 import course.javaweb.service.ProductService;
-import course.javaweb.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,16 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class IndexController {
 
     private ContentService contentService;
     private ProductService productService;
+
     @Autowired
     public void setContentService(ContentService contentService) {
         this.contentService = contentService;
@@ -43,7 +40,7 @@ public class IndexController {
 //        }
         List<Product> productList;
 
-        if( type == null) type = 0;
+        if( type == null ) type = 0;
 
         httpSession.setAttribute("listType", type);
 
