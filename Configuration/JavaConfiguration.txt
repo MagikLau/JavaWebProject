@@ -1,0 +1,21 @@
+﻿apt-get update
+apt-get install wget
+wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz
+tar -zxvf jdk-8u131-linux-x64.tar.gz
+
+apt-get install vim
+vim /etc/profile
+
+JAVA_HOME=/jdk1.8/jdk1.8.0_131
+JAVA_BIN=/jdk1.8/jdk1.8.0_131/bin
+PATH=$PATH:$JAVA_BIN
+CLASSPATH=$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export JAVA_HOME JAVA_BIN PATH CLASSPATH
+
+source /etc/profile
+
+update-alternatives --install /usr/bin/java java /jdk1.8/jdk1.8.0_131/bin/java 300
+update-alternatives --install /usr/bin/javac javac /jdk1.8/jdk1.8.0_131/bin/java 300
+
+Reference:
+https://my.oschina.net/lijinzhao/blog/524826

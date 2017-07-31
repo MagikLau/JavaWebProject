@@ -2,6 +2,8 @@
 --
 -- Table structure for table `content`
 --
+CREATE DATABASE Course;
+USE Course;
 
 DROP TABLE IF EXISTS `content`;
 

@@ -1,0 +1,23 @@
+git clone https://github.com/LauItachi/JavaWebProject.git
+cd JavaWebProject
+mvn package
+文件夹目录什么的请自己处理……
+
+设置时区：
+TZ='Asia/Shanghai'; export TZ
+
+Deploy project:
+cd /usr/tomcat8.5/webapps/ROOT
+rm -rf ./*
+cd /JavaWebProject/target/JavaWebProject
+cp -r /JavaWebProject/target/JavaWebProject/* /usr/tomcat8.5/webapps/ROOT
+to start: /usr/tomcat8.5/bin/startup.sh or catalina.sh start
+use http://ip:port to access
+
+Deploy war:
+cp /JavaWebProject/target/JavaWebProject.war /usr/tomcat8.5/webapps
+vim /usr/tomcat8.5/conf/server.xml
+add:
+<Context path="/" docBase="JavaWebProject.war" debug="0" privileged="true" reloadable="true"/>
+to start: /usr/tomcat8.5/bin/startup.sh or catalina.sh start
+use http://ip:port/JavaWebProject to access
