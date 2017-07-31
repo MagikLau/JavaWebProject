@@ -32,7 +32,8 @@ public class TrxServiceImpl implements TrxService {
 
         trx.setPersonId(user.getId());
         trx.setPrice(content.getPrice().intValue());
-//        trx.setTime();//时间直接获取数据库当前时间now()
+        trx.setTime(System.currentTimeMillis());
+// 时间直接获取数据库当前时间now()
         trxDao.addTrx(trx);
 
     }
