@@ -46,7 +46,7 @@
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into trx (contentId, personId,price,trx.time)
-        values (#{contentId},#{personId},#{price},now())
+        values (#{contentId},#{personId},#{price},#{time})
     </insert>
 
 </mapper>
