@@ -1,4 +1,4 @@
-﻿mysqladmin -u root password '12qwas'
+﻿mysqladmin -u root password '123456'
 
 mysql -u root -p
 
@@ -6,9 +6,9 @@ mysql>
 
 select user,host,password from user where user='root';
 查看缺了哪个要用的，就补上
-grant all privileges on database.table to root@'127.0.0.1' identified by '12qwas';
-grant all privileges on database.table to root@'localhost' identified by '12qwas';
-grant all privileges on database.table to root@'公网IP' identified by '12qwas';
+grant all privileges on database.table to root@'127.0.0.1' identified by '123456';
+grant all privileges on database.table to root@'localhost' identified by '123456';
+grant all privileges on database.table to root@'公网IP' identified by '123456';
 
 CREATE DATABASE Course;(注意：区分大小写！！！)
 
