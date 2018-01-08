@@ -10,6 +10,7 @@ IntelliJ IDEA 2017
 ### 工程管理：
 使用Maven进行工程及jar包的管理，Archetype选择：maven-archetype-webapp<br/>
 #### 工程结构：
+![Idea工程结构截图](https://github.com/LauItachi/JavaWebProject/blob/master/pic01.png)
 
 ### 代码管理：
 GitHub，并使用idea中集成的GitHub插件进行push和pull操作。
